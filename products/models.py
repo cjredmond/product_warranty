@@ -6,6 +6,12 @@ from django.contrib.auth.models import User
 class Account(models.Model):
     user = models.OneToOneField('auth.User')
 
+    def __str__(self):
+        return self.user.username
+
+    @property
+    def products(self):
+        return self.product_set.all()
 
 @receiver(post_save, sender=User)
 def create(**kwargs):

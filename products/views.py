@@ -3,7 +3,10 @@ from django.views.generic import TemplateView, DetailView
 from django.views.generic.edit import CreateView, FormView, DeleteView, UpdateView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from products.models import Product
+from products.models import Product, Account
+from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 import uuid
 
 class UserCreateView(CreateView):
@@ -20,3 +23,13 @@ class ProductCreateView(CreateView):
         instance.serial = uuid.uuid4()
         instance.account = self.request.user.account
         return super().form_valid(form)
+
+class AccountDetailView(DetailView):
+    model = Account
+
+@login_required
+def home(request):
+    return HttpResponseRedirect(
+        reverse('account_detail_view',
+            args=[request.user.account.id])
+    )

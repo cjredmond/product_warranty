@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {{ object.user.username }}<hr>
+    {% for prod in object.products %}
+    {{ prod.name }}<br>
+    {{ prod.end_date }}
+    <hr>
+    {% endfor %}
+  </body>
+</html>
