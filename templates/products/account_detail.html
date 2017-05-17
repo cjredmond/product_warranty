@@ -8,7 +8,10 @@
     {{ object.user.username }}<hr>
     {% for prod in object.products %}
     {{ prod.name }}<br>
-    {{ prod.end_date }}
+    {{ prod.end_date }} |
+    {{ prod.sale_acc }} |
+    {{ prod.model_name }} |
+    {{ prod.serial }} |
     <hr>
     {% endfor %}
   </body>
